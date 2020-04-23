@@ -6,6 +6,7 @@ public class Function11_Departure : ProppFunction
 {
     public override int Number => 11;
     public override string Name => "Departure";
-    
+    public override string Designation => "↑";
+
     public ProppMotivation motivation;
 }

@@ -6,4 +6,5 @@ public class Function31_Wedding : ProppFunction
 {
     public override int Number => 31;
     public override string Name => "Wedding";
+    public override string Designation => "W";
 }

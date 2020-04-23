@@ -6,6 +6,7 @@ public class Function26_Solution : ProppFunction
 {
     public override int Number => 26;
     public override string Name => "Solution";
-    
+    public override string Designation => "N";
+
     public string form;
 }

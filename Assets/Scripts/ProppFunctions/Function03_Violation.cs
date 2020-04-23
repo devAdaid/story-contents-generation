@@ -6,6 +6,7 @@ public class Function03_Violation : ProppFunction
 {
     public override int Number => 3;
     public override string Name => "Violation";
+    public override string Designation => "δ";
 
     public ProppCharacter performCharacter;
     public ProppMotivation motivation;

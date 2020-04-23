@@ -6,6 +6,7 @@ public class Function06_Trickery : ProppFunction
 {
     public override int Number => 6;
     public override string Name => "Trickery";
+    public override string Designation => "η";
 
     public string form;
 }

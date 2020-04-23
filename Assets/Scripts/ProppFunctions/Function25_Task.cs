@@ -6,6 +6,7 @@ public class Function25_Task : ProppFunction
 {
     public override int Number => 25;
     public override string Name => "Difficult Task";
+    public override string Designation => "M";
 
     public ProppCharacter performCharacter;
     public ProppMotivation motivation;

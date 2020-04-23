@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ProppFunction
 {
-    public virtual int Number
-    {
-        get { return 0; }
-    }
-
-    public virtual string Name
-    {
-        get { return string.Empty; }
-    }
+    public virtual int Number => 0;
+    public virtual string Name => string.Empty;
+    public virtual string Designation => string.Empty;
 
     public override string ToString()
     {

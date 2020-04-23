@@ -6,6 +6,7 @@ public class Function08_VilainyLack : ProppFunction
 {
     public override int Number => 8;
     public override string Name => "VilainyLack";
+    public override string Designation => "A";
 
     public ProppCharacter performCharacter;
     public ProppCharacter targetCharacter;

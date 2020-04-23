@@ -6,6 +6,7 @@ public class Function12_Donor : ProppFunction
 {
     public override int Number => 12;
     public override string Name => "First Function of Donor";
+    public override string Designation => "D";
 
     public ProppCharacter donorCharacter;
     public string appearForm;

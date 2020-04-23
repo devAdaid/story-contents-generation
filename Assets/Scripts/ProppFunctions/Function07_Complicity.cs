@@ -6,6 +6,7 @@ public class Function07_Complicity : ProppFunction
 {
     public override int Number => 7;
     public override string Name => "Complicity";
+    public override string Designation => "θ";
 
     public string reaction;
     public string preliminaryMisfortune;

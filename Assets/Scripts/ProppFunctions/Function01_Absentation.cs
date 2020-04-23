@@ -6,6 +6,7 @@ public class Function01_Absentation : ProppFunction
 {
     public override int Number => 1;
     public override string Name => "Absentation";
+    public override string Designation => "β";
 
     public ProppCharacter targetCharacter;
     public ProppMotivation motivation;

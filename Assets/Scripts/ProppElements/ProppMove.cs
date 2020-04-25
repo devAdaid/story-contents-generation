@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ProppMove
 {
     public List<ProppFunctionContainer> proppFunctions = new List<ProppFunctionContainer>();
@@ -20,9 +21,18 @@ public class ProppMove
         Number = number;
     }
 
-    public void AddFunction(ProppFunctionFactory factory, int idx)
+    public ProppMove(ProppMoveData data)
     {
-        var function = new ProppFunctionContainer(factory.CreateFunction(idx), Number);
+        Number = data.number;
+        foreach(var f in data.proppFunctions)
+        {
+            AddFunction(f.functionNumber);
+        }
+    }
+
+    public void AddFunction(int idx)
+    {
+        var function = new ProppFunctionContainer(idx, Number);
         if (proppFunctions.Count == 0)
         {
             FirstFunction = function;
@@ -34,5 +44,17 @@ public class ProppMove
         LastFunction = function;
 
         proppFunctions.Add(function);
+    }
+
+    public ProppFunction FindFunction(int functionNumber)
+    {
+        foreach (var f in proppFunctions)
+        {
+            if (f.containFunction.Number == functionNumber)
+            {
+                return f.containFunction;
+            }
+        }
+        return null;
     }
 }

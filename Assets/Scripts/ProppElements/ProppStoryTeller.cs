@@ -5,13 +5,24 @@ using UnityEngine;
 public class ProppStoryTeller
 {
     public ProppStory story = null;
-    public StoryGenerator storyGenerator = new StoryGenerator();
+    public RandomStoryGenerator randomStoryGenerator = new RandomStoryGenerator();
+    public CBRStoryGenerator cbrStoryGenerator = new CBRStoryGenerator();
     public ProppFunctionContainer currentFunction = null;
     private bool _isStoryEnd = false;
 
-    public void MakeStory()
+    public ProppStoryTeller() { }
+
+    public void MakeCBRStory(List<int> condition)
     {
-        story = storyGenerator.GenerateStory();
+        cbrStoryGenerator.SetCondition(condition);
+        story = cbrStoryGenerator.GenerateStory();
+        Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
+    }
+
+    public void MakeRandomStory()
+    {
+        story = randomStoryGenerator.GenerateStory();
+        Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
     }
 
     public void ProgressStory()

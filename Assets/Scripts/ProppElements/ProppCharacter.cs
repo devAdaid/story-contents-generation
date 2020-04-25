@@ -10,7 +10,7 @@ public enum ECharacterType
     FalseHero,
     Helper,
     Dispatcher,
-    Princess,
+    PersonSoughtFor,
     Etc
 }
 
@@ -18,4 +18,10 @@ public class ProppCharacter
 {
     public string name;
     public ECharacterType characterType;
+
+    public ProppCharacter(string n, ECharacterType charType)
+    {
+        name = n;
+        characterType = charType;
+    }
 }

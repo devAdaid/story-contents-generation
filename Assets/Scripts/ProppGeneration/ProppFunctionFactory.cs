@@ -6,7 +6,24 @@ using System.Reflection;
 
 public class ProppFunctionFactory
 {
+    public static ProppFunctionFactory Instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                _instance = new ProppFunctionFactory();
+            }
+            return _instance;
+        }
+    }
+    private static ProppFunctionFactory _instance = null;
     private Dictionary<int, ConstructorInfo> _constructorInfos = new Dictionary<int, ConstructorInfo>();
+
+    public ProppFunctionFactory()
+    {
+        Initialize();
+    }
 
     public void Initialize()
     {

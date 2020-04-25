@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ProppFunctionContainer
 {
     public ProppFunctionContainer nextFunction = null;
     public ProppFunction containFunction = null;
     public int MoveNumber { get; set; }
 
-    public ProppFunctionContainer(ProppFunction function, int moveNumber)
+    public ProppFunctionContainer(int functionNumber, int moveNumber)
     {
-        containFunction = function;
+        containFunction = ProppFunctionFactory.Instance.CreateFunction(functionNumber);
         MoveNumber = moveNumber;
     }
 }

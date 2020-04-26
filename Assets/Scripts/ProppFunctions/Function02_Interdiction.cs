@@ -9,6 +9,33 @@ public class Function02_Interdiction : ProppFunction
     public override string Designation => "γ";
 
     public ProppCharacter performCharacter;
-    public ProppMotivation motivation;
-    public string form;
+    public ProppCharacter targetCharacter;
+    public string interdiction;
+
+    public override void SetFunctionDescription(ProppStory story, Dictionary<string, string> description)
+    {
+        base.SetFunctionDescription(story, description);
+        string performCharName, targetCharName, interdiction, form;
+        if (description.TryGetValue("performCharName", out performCharName))
+        {
+            performCharacter = story.FindCharacter(performCharName);
+        }
+        if (description.TryGetValue("targetCharName", out targetCharName))
+        {
+            targetCharacter = story.FindCharacter(targetCharName);
+        }
+        if (description.TryGetValue("interdiction", out interdiction))
+        {
+            this.interdiction = interdiction;
+        }
+        if (description.TryGetValue("form", out form))
+        {
+            Form = form;
+        }
+    }
+
+    public override string GetString()
+    {
+        return string.Format(Form, performCharacter.name, targetCharacter.name, interdiction);
+    }
 }

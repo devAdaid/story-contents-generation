@@ -21,18 +21,41 @@ public class ProppMove
         Number = number;
     }
 
-    public ProppMove(ProppMoveData data)
+    public ProppMove(ProppMoveData data, ProppStory story)
     {
         Number = data.number;
         foreach(var f in data.proppFunctions)
         {
-            AddFunction(f.functionNumber);
+            AddFunction(f, story);
         }
     }
 
-    public void AddFunction(int idx)
+    public void AddFunction(int functionNumber)
     {
-        var function = new ProppFunctionContainer(idx, Number);
+        var function = new ProppFunctionContainer(functionNumber, Number);
+        if (proppFunctions.Count == 0)
+        {
+            FirstFunction = function;
+        }
+        if (LastFunction != null)
+        {
+            LastFunction.nextFunction = function;
+        }
+        LastFunction = function;
+
+        proppFunctions.Add(function);
+    }
+
+    public void AddFunction(ProppFunctionData functionData, ProppStory story)
+    {
+        Dictionary<string, string> description = new Dictionary<string, string>();
+        for(int i = 0; i < functionData.descriptionKey.Count; i++)
+        {
+            description.Add(functionData.descriptionKey[i], functionData.descriptionValue[i]);
+        }
+
+        var function = new ProppFunctionContainer(functionData.functionNumber, Number);
+        function.containFunction.SetFunctionDescription(story, description);
         if (proppFunctions.Count == 0)
         {
             FirstFunction = function;

@@ -25,19 +25,16 @@ public class CBRStoryGenerator : StoryGenerator
         include.Sort();
         includeFunctions = include;
         _functionKey = CalculateFunctionKey(includeFunctions);
-        Debug.Log($"My Key: {_functionKey}");
+        //Debug.Log($"My Key: {_functionKey}");
     }
 
     public override ProppStory GenerateStory()
     {
-        foreach (var st in _storyData)
-        {
-            st.evaluateDistance = EvaluateDistance(st.FunctionKey);
-            Debug.Log($"{st.name}: {st.evaluateDistance}");
-            if (st.evaluateDistance == 0) return new ProppStory(st);
-        }
-        _storyData.Sort();
-        return new ProppStory(_storyData[0]);
+        ProppStory story = RetrieveStory();
+        ReuseStory(story);
+        ReviseStory(story);
+        RetainStory(story);
+        return story;
     }
 
     public List<ProppStoryData> LoadStoryData()
@@ -59,8 +56,8 @@ public class CBRStoryGenerator : StoryGenerator
 
     public int EvaluateDistance(int otherStoryFunctionKey)
     {
-        int evaluate = (~_functionKey) & otherStoryFunctionKey;
-        return NumberOfSetBits(evaluate);
+        int evaluate = includeFunctions.Count - NumberOfSetBits(_functionKey & otherStoryFunctionKey);
+        return evaluate;
     }
 
     private int NumberOfSetBits(int i)
@@ -68,5 +65,37 @@ public class CBRStoryGenerator : StoryGenerator
         i = i - ((i >> 1) & 0x55555555);
         i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
         return (((i + (i >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24;
+    }
+
+    private ProppStory RetrieveStory()
+    {
+        foreach (var st in _storyData)
+        {
+            st.evaluateDistance = EvaluateDistance(st.FunctionKey);
+            Debug.Log($"{st.name}: {st.evaluateDistance}");
+            if (st.evaluateDistance == 0) return new ProppStory(st);
+        }
+        _storyData.Sort();
+        return new ProppStory(_storyData[0]);
+    }
+
+    private void ReuseStory(ProppStory story)
+    {
+
+    }
+
+    private void ReviseStory(ProppStory story)
+    {
+        ProppCharacter hero = new ProppCharacter("Hero", ECharacterType.Hero);
+        ProppCharacter villain = new ProppCharacter("Villain", ECharacterType.Villain);
+        ProppCharacter helper = new ProppCharacter("Helper", ECharacterType.Helper);
+        story.AddCharacter(hero);
+        story.AddCharacter(villain);
+        story.AddCharacter(helper);
+    }
+
+    private void RetainStory(ProppStory story)
+    {
+
     }
 }

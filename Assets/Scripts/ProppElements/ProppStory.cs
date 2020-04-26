@@ -8,6 +8,7 @@ public class ProppStory
     public ProppFunctionContainer firstFunction = null;
     public List<ProppMove> moves = new List<ProppMove>();
     public List<ProppCharacter> characters = new List<ProppCharacter>();
+    private Dictionary<string, ProppCharacter> _charDictinary = new Dictionary<string, ProppCharacter>();
     private Dictionary<int, ProppMove> _moveDictionary = new Dictionary<int, ProppMove>();
 
     public ProppMove FirstMove
@@ -23,9 +24,10 @@ public class ProppStory
 
     public ProppStory(ProppStoryData data)
     {
+        characters = data.characters;
         foreach(var m in data.moves)
         {
-            AddMove(new ProppMove(m));
+            AddMove(new ProppMove(m, this));
         }
         firstFunction = FirstMove.FirstFunction;
     }
@@ -48,6 +50,21 @@ public class ProppStory
     public void AddCharacter(ProppCharacter character)
     {
         characters.Add(character);
+        _charDictinary.Add(character.name, character);
+    }
+
+    public ProppCharacter FindCharacter(string charName)
+    {
+        return _charDictinary[charName];
+    }
+
+    public ProppCharacter FindCharacter(ECharacterType characterType)
+    {
+        foreach(var ch in characters)
+        {
+            if (ch.characterType == characterType) return ch;
+        }
+        return null;
     }
 
     public ProppFunction FindFunction(int moveNumber, int functionNumber)

@@ -14,10 +14,7 @@ public class ProppStoryData : ScriptableObject, IEquatable<ProppStoryData>, ICom
     {
         get
         {
-            if(_functionKey == 0)
-            {
-                _functionKey = CalculateFunctionKey();
-            }
+            _functionKey = CalculateFunctionKey();
             return _functionKey;
         }
     }

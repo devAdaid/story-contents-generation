@@ -9,8 +9,23 @@ public class Function03_Violation : ProppFunction
     public override string Designation => "δ";
 
     public ProppCharacter performCharacter;
-    public ProppMotivation motivation;
-    public string form;
-    public ProppCharacter villainCharacter;
-    public string villainAppearForm;
+
+    public override void SetFunctionDescription(ProppStory story, Dictionary<string, string> description)
+    {
+        base.SetFunctionDescription(story, description);
+        string performCharName, form;
+        if (description.TryGetValue("performCharName", out performCharName))
+        {
+            performCharacter = story.FindCharacter(performCharName);
+        }
+        if (description.TryGetValue("form", out form))
+        {
+            Form = form;
+        }
+    }
+
+    public override string GetString()
+    {
+        return string.Format(Form, performCharacter.name);
+    }
 }

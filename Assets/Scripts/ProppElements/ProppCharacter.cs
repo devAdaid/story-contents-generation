@@ -11,9 +11,11 @@ public enum ECharacterType
     Helper,
     Dispatcher,
     PersonSoughtFor,
+    MagicalAgent,
     Etc
 }
 
+[System.Serializable]
 public class ProppCharacter
 {
     public string name;

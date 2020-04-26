@@ -9,6 +9,30 @@ public class Function25_Task : ProppFunction
     public override string Designation => "M";
 
     public ProppCharacter performCharacter;
-    public ProppMotivation motivation;
-    public string form;
+    public ProppCharacter targetCharacter;
+    public string task;
+
+    public override void SetFunctionDescription(ProppStory story, Dictionary<string, string> description)
+    {
+        base.SetFunctionDescription(story, description);
+        string performCharName, targetCharName, form;
+        if (description.TryGetValue("performCharName", out performCharName))
+        {
+            performCharacter = story.FindCharacter(performCharName);
+        }
+        if (description.TryGetValue("targetCharName", out targetCharName))
+        {
+            targetCharacter = story.FindCharacter(targetCharName);
+        }
+        if (description.TryGetValue("form", out form))
+        {
+            Form = form;
+        }
+        description.TryGetValue("task", out task);
+    }
+
+    public override string GetString()
+    {
+        return string.Format(Form, performCharacter.name, targetCharacter.name, task);
+    }
 }

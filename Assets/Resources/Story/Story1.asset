@@ -36,12 +36,6 @@ MonoBehaviour:
       - family
       - hero
       - interdiction
-  - functionNumber: 1
-    actions:
-    - actionName: move
-      arguments:
-      - family
-      - OutHome
   - functionNumber: 3
     actions:
     - actionName: violate
@@ -66,14 +60,13 @@ MonoBehaviour:
   - functionNumber: 10
     actions:
     - actionName: determine
-      arguments:
-      - hero
+      arguments: []
   - functionNumber: 11
     actions:
     - actionName: move
       arguments:
       - hero
-      - Forest
+      - DonorHome
   - functionNumber: 12
     actions:
     - actionName: meet
@@ -102,15 +95,30 @@ MonoBehaviour:
       arguments:
       - donor
       - hero
+    - actionName: move
+      arguments:
+      - hero
+      - VillainHouse
   - functionNumber: 19
     actions:
     - actionName: liquidate
       arguments: []
+  - functionNumber: 20
+    actions:
+    - actionName: move
+      arguments:
+      - hero
+      - Home
   characters:
     heroName: "\uC18C\uB140"
-    villainName: "\uAC70\uC704"
+    villainName: "\uB9C8\uB140"
     donorName: "\uACE0\uC2B4\uB3C4\uCE58"
     familyName: "\uBD80\uBAA8\uB2D8"
     princessName: "\uB3D9\uC0DD"
-  _functionKey: 589582
+    helperName: 
+  locations:
+    home: "\uC9D1"
+    outHome: "\uC9D1 \uBC16"
+    villainHouse: "\uC232 \uC18D\uC758 \uC9D1"
+    donorHome: "\uC232 \uC18D"
   evaluateDistance: 0

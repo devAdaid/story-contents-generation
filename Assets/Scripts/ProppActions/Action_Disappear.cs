@@ -10,11 +10,11 @@ public class Action_Disappear : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 사라졌습니다.";
+        return $"{performChar}이(가) 사라졌습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 사라지는 것";
+        return $"{performChar}이(가) 사라지는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

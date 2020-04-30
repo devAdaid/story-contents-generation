@@ -69,8 +69,11 @@ public class ProppActionFactory
     public ProppAction CreateAction(ProppActionData data)
     {
         ConstructorInfo constructorInfo;
+        if (data == null) return null;
+
         if (!_constructorInfos.TryGetValue(data.actionName, out constructorInfo))
         {
+            Debug.Log(data.actionName);
             return null;
         }
 

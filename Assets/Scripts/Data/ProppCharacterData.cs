@@ -10,15 +10,21 @@ public class ProppCharacterData
     public string donorName;
     public string familyName;
     public string princessName;
-    private Dictionary<string, string> charDictonary = new Dictionary<string, string>();
+    public string helperName;
+    private Dictionary<string, string> charDictonary = null;
 
     public void SetCharDict()
     {
-        charDictonary.Add("hero", heroName);
-        charDictonary.Add("villain", villainName);
-        charDictonary.Add("donor", donorName);
-        charDictonary.Add("family", familyName);
-        charDictonary.Add("princess", princessName);
+        if(charDictonary == null || charDictonary.Count == 0)
+        {
+            charDictonary = new Dictionary<string, string>();
+            charDictonary.Add("hero", heroName);
+            charDictonary.Add("villain", villainName);
+            charDictonary.Add("donor", donorName);
+            charDictonary.Add("family", familyName);
+            charDictonary.Add("princess", princessName);
+            charDictonary.Add("helper", helperName);
+        }
     }
     
     public string FindCharacterName(string role)

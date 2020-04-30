@@ -11,17 +11,17 @@ public class Action_Move : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 {targetLocation}으로 갔습니다.";
+        return $"{performChar}이(가) {targetLocation}(으)로 갔습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetLocation}으로 가는 것";
+        return $"{performChar}이(가) {targetLocation}(으)로 가는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)
     {
         base.SetWithArgs(story, arguments);
         performChar = story.FindCharacterName(arguments[0]);
-        targetLocation = arguments[1];
+        targetLocation = story.FindLocationName(arguments[1]);
     }
 }

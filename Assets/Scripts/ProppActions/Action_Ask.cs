@@ -11,11 +11,11 @@ public class Action_Ask : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 {targetChar}에게 도와달라고 요청했습니다.";
+        return $"{performChar}이(가) {targetChar}에게 부탁했습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetChar}을 도와달라고 요청하는 것";
+        return $"{performChar}이(가) {targetChar}에게 부탁하는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

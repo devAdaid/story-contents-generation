@@ -10,11 +10,11 @@ public class Action_Determine : ProppAction
 
     public override string Description()
     {
-        return $"{liquidationAction.DescriptionAsNoun()}을 결심하였습니다.";
+        return $"{liquidationAction.DescriptionAsNoun()}을(를) 결심하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{liquidationAction.DescriptionAsNoun()}을 결심하는 것";
+        return $"{liquidationAction.DescriptionAsNoun()}을(를) 결심하는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

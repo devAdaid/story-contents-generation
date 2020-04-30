@@ -11,11 +11,11 @@ public class Action_Meet : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 {targetChar}을 만났습니다.";
+        return $"{performChar}이(가) {targetChar}을(를) 만났습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetChar}을 만나는 것";
+        return $"{performChar}이(가) {targetChar}을(를) 만나는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProppStoryTeller
 {
     public ProppStory story = null;
+    public ProppStoryData storyData = null;
     public RandomStoryGenerator randomStoryGenerator = new RandomStoryGenerator();
     public CBRStoryGenerator cbrStoryGenerator = new CBRStoryGenerator();
     public int currentStoryIndex = 0;
@@ -16,15 +17,20 @@ public class ProppStoryTeller
     {
         currentStoryIndex = 0;
         cbrStoryGenerator.SetCondition(condition);
-        story = cbrStoryGenerator.GenerateStory();
+        story = cbrStoryGenerator.GenerateStory(out storyData);
         //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
     }
 
     public void MakeRandomStory()
     {
         currentStoryIndex = 0;
-        story = randomStoryGenerator.GenerateStory();
-        Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
+        story = randomStoryGenerator.GenerateStory(out storyData);
+        //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
+    }
+
+    public void RetainStory()
+    {
+        StoryDatabaseManager.AddStory(storyData);
     }
 
     public void ProgressStory()
@@ -51,10 +57,10 @@ public class ProppStoryTeller
 
         ProppFunction currentFuntion = story.functions[currentStoryIndex];
         //Debug.Log($"Function {currentFuntion.Number}");
-        foreach(var a in currentFuntion.actions)
+        foreach (var a in currentFuntion.actions)
         {
             if(a != null)
-                Debug.Log(a.Description());
+                Debug.Log($"{a.Description()}");
             //Debug.Log(a.ToString());
         }
     }

@@ -1,22 +1,24 @@
 ﻿using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CBRStoryGenerator : StoryGenerator
 {
     public List<int> includeFunctions;
-    private List<ProppStoryData> _storyData;
     private int _functionKey = 0;
 
     public CBRStoryGenerator()
     {
-        _storyData = LoadStoryData();
+        LoadStoryData();
+        LoadPairData();
+        LoadBackgroundData();
     }
 
     public CBRStoryGenerator(List<int> include)
     {
-        _storyData = LoadStoryData();
+        LoadStoryData();
+        LoadPairData();
+        LoadBackgroundData();
         SetCondition(include);
     }
 
@@ -28,20 +30,12 @@ public class CBRStoryGenerator : StoryGenerator
         //Debug.Log($"My Key: {_functionKey}");
     }
 
-    public override ProppStory GenerateStory()
+    public override ProppStory GenerateStory(out ProppStoryData storyData)
     {
-        ProppStory story = RetrieveStory();
-        ReuseStory(story);
-        ReviseStory(story);
+        storyData = RetrieveStoryData();
+        ProppStory story = ReuseReviseStory(storyData);
         RetainStory(story);
         return story;
-    }
-
-    public List<ProppStoryData> LoadStoryData()
-    {
-        var data = Resources.LoadAll<ProppStoryData>("Story");
-        //Debug.Log(data.Length);
-        return data.ToList();
     }
 
     public int CalculateFunctionKey(List<int> include)
@@ -53,40 +47,42 @@ public class CBRStoryGenerator : StoryGenerator
         }
         return result;
     }
-
-    public int EvaluateDistance(int otherStoryFunctionKey)
-    {
-        int evaluate = includeFunctions.Count - NumberOfSetBits(_functionKey & otherStoryFunctionKey);
-        return evaluate;
-    }
-
-    private int NumberOfSetBits(int i)
-    {
-        i = i - ((i >> 1) & 0x55555555);
-        i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
-        return (((i + (i >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24;
-    }
-
-    private ProppStory RetrieveStory()
+    
+    private ProppStoryData RetrieveStoryData()
     {
         foreach (var st in _storyData)
         {
-            st.evaluateDistance = EvaluateDistance(st.FunctionKey);
-            Debug.Log($"{st.name}: {st.evaluateDistance}");
-            if (st.evaluateDistance == 0) return new ProppStory(st);
+            st.evaluateDistance = EvaluateDistance(includeFunctions.Count, _functionKey, st.FunctionKey);
+            //Debug.Log($"{st.name}: {st.evaluateDistance}");
+            if (st.evaluateDistance == 0) return st;
         }
         _storyData.Sort();
-        return new ProppStory(_storyData[0]);
+        return _storyData[0];
     }
 
-    private void ReuseStory(ProppStory story)
+    private ProppStory ReuseReviseStory(ProppStoryData storyData)
     {
+        ProppStoryData cloneData = ScriptableObject.Instantiate(storyData);
+        
+        // Background
+        RenameBackground(cloneData);
 
-    }
+        // Interdiction
+        ReplaceActionData(ref cloneData.interdiction, GetRandomPairFunction(_interdictionPairs).functionData[0].actions[0]);
 
-    private void ReviseStory(ProppStory story)
-    {
+        // Villainy
+        var randomVillainyPair = GetRandomPairFunction(_villainyPairs);
+        ReplaceActionData(ref cloneData.villainy.villainyActionData, randomVillainyPair.functionData[0].actions[0]);
+        ReplaceActionData(ref cloneData.villainy.liquidationActionData, randomVillainyPair.functionData[1].actions[0]);
+        
+        // Others
+        ModifyWithPairFunction(cloneData, GetRandomPairFunction(_donorPairs));
+        ModifyWithPairFunction(cloneData, GetRandomPairFunction(_agentPairs));
+        ModifyWithPairFunction(cloneData, GetRandomPairFunction(_strugglePairs));
+        ModifyWithPairFunction(cloneData, GetRandomPairFunction(_pursuePairs));
+        ModifyWithPairFunction(cloneData, GetRandomPairFunction(_endPairs));
 
+        return new ProppStory(cloneData);
     }
 
     private void RetainStory(ProppStory story)

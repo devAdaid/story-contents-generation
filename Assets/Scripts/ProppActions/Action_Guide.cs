@@ -11,11 +11,11 @@ public class Action_Guide : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 {targetChar}에게 길을 안내하였습니다.";
+        return $"{performChar}이(가) {targetChar}에게 길을 안내하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetChar}에게 길을 안내하는 것";
+        return $"{performChar}이(가) {targetChar}에게 길을 안내하는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

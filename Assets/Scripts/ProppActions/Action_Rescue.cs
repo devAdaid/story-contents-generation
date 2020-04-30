@@ -11,11 +11,11 @@ public class Action_Rescue : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 {targetChar}을 구출하였습니다.";
+        return $"{performChar}이(가) {targetChar}을(를) 구출하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetChar}을 구출하는 것";
+        return $"{performChar}이(가) {targetChar}을(를) 구출하는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

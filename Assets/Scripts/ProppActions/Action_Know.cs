@@ -11,11 +11,11 @@ public class Action_Know : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이 {contents}을 알게 되었습니다.";
+        return $"{performChar}이(가) {contents}을(를) 알게 되었습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {contents}을 알게 되는 것";
+        return $"{performChar}이(가) {contents}을(를) 알게 되는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

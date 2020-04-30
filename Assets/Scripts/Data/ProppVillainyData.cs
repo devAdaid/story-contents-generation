@@ -8,6 +8,7 @@ public class ProppVillainyData
     public ProppActionData villainyActionData;
     public ProppActionData liquidationActionData;
 
+    public ProppVillainyData() { }
     public ProppVillainyData(ProppVillainy villainy)
     {
         villainyActionData = new ProppActionData(villainy.villainyAction);

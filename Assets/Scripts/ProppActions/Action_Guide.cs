@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action_Rescue : ProppAction
+public class Action_Guide : ProppAction
 {
-    public const string key = "rescue";
+    public const string key = "guide";
     public override string ActionName => key;
     public string performChar;
     public string targetChar;
 
     public override string Description()
     {
-        return $"{performChar}이 {targetChar}을 구출하였습니다.";
+        return $"{performChar}이 {targetChar}에게 길을 안내하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetChar}을 구출하는 것";
+        return $"{performChar}이 {targetChar}에게 길을 안내하는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

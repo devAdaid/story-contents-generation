@@ -7,20 +7,22 @@ public class ProppStoryTeller
     public ProppStory story = null;
     public RandomStoryGenerator randomStoryGenerator = new RandomStoryGenerator();
     public CBRStoryGenerator cbrStoryGenerator = new CBRStoryGenerator();
-    public ProppFunctionContainer currentFunction = null;
-    private bool _isStoryEnd = false;
+    public int currentStoryIndex = 0;
+    public bool IsStoryEnd = false;
 
     public ProppStoryTeller() { }
 
     public void MakeCBRStory(List<int> condition)
     {
+        currentStoryIndex = 0;
         cbrStoryGenerator.SetCondition(condition);
         story = cbrStoryGenerator.GenerateStory();
-        Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
+        //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
     }
 
     public void MakeRandomStory()
     {
+        currentStoryIndex = 0;
         story = randomStoryGenerator.GenerateStory();
         Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
     }
@@ -28,28 +30,32 @@ public class ProppStoryTeller
     public void ProgressStory()
     {
         if (story == null) return;
-        if (_isStoryEnd) return;
+        if (IsStoryEnd) return;
 
-        if(currentFunction == null)
+        currentStoryIndex += 1;
+        if(currentStoryIndex >= story.functions.Count)
         {
-            currentFunction = story.firstFunction;
+            IsStoryEnd = true;
         }
-        else
-        {
-            currentFunction = currentFunction.nextFunction;
-        }
-        TellStory();
     }
 
     public void TellStory()
     {
-        if (currentFunction == null)
+        if (story == null) return;
+        if (IsStoryEnd) return;
+
+        if (currentStoryIndex >= story.functions.Count)
         {
-            Debug.Log("Story End");
-            _isStoryEnd = true;
             return;
         }
 
-        Debug.Log($"Move{currentFunction.MoveNumber}_{currentFunction.containFunction.Name}");
+        ProppFunction currentFuntion = story.functions[currentStoryIndex];
+        //Debug.Log($"Function {currentFuntion.Number}");
+        foreach(var a in currentFuntion.actions)
+        {
+            if(a != null)
+                Debug.Log(a.Description());
+            //Debug.Log(a.ToString());
+        }
     }
 }

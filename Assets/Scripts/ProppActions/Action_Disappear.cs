@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action_Rescue : ProppAction
+public class Action_Disappear : ProppAction
 {
-    public const string key = "rescue";
+    public const string key = "disappear";
     public override string ActionName => key;
     public string performChar;
-    public string targetChar;
 
     public override string Description()
     {
-        return $"{performChar}이 {targetChar}을 구출하였습니다.";
+        return $"{performChar}이 사라졌습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이 {targetChar}을 구출하는 것";
+        return $"{performChar}이 사라지는 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)
     {
         base.SetWithArgs(story, arguments);
         performChar = story.FindCharacterName(arguments[0]);
-        targetChar = story.FindCharacterName(arguments[1]);
     }
 }

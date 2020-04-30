@@ -5,79 +5,44 @@ using UnityEngine;
 [System.Serializable]
 public class ProppStory
 {
-    public ProppFunctionContainer firstFunction = null;
-    public List<ProppMove> moves = new List<ProppMove>();
-    public List<ProppCharacter> characters = new List<ProppCharacter>();
-    private Dictionary<string, ProppCharacter> _charDictinary = new Dictionary<string, ProppCharacter>();
-    private Dictionary<int, ProppMove> _moveDictionary = new Dictionary<int, ProppMove>();
-
-    public ProppMove FirstMove
-    {
-        private set; get;
-    }
-    public ProppMove LastMove
-    {
-        private set; get;
-    }
+    public ProppAction interdiction;
+    public ProppVillainy villainy;
+    public List<ProppFunction> functions = new List<ProppFunction>();
+    //public List<ProppCharacter> characters = new List<ProppCharacter>();
+    public ProppCharacterData characters;
 
     public ProppStory() { }
 
     public ProppStory(ProppStoryData data)
     {
+        ProppActionFactory.Instance.SetStory(this);
         characters = data.characters;
-        foreach(var m in data.moves)
+        characters.SetCharDict();
+        interdiction = ProppActionFactory.Instance.CreateAction(data.interdiction);
+        villainy = new ProppVillainy(data.villainy);
+        foreach(var f in data.functions)
         {
-            AddMove(new ProppMove(m, this));
+            AddFunction(new ProppFunction(f));
         }
-        firstFunction = FirstMove.FirstFunction;
     }
 
-    public void AddMove(ProppMove move)
+    public void AddFunction(ProppFunction func)
     {
-        if (moves.Count == 0)
-        {
-            FirstMove = move;
-        }
-        if (LastMove != null)
-        {
-            LastMove.LastFunction.nextFunction = move.FirstFunction;
-        }
-        LastMove = move;
-        moves.Add(move);
-        _moveDictionary.Add(move.Number, move);
+        functions.Add(func);
     }
 
-    public void AddCharacter(ProppCharacter character)
+    public string FindCharacterName(string role)
     {
-        characters.Add(character);
-        _charDictinary.Add(character.name, character);
-    }
-
-    public ProppCharacter FindCharacter(string charName)
-    {
-        return _charDictinary[charName];
-    }
-
-    public ProppCharacter FindCharacter(ECharacterType characterType)
-    {
-        foreach(var ch in characters)
-        {
-            if (ch.characterType == characterType) return ch;
-        }
-        return null;
+        return characters.FindCharacterName(role);
     }
 
     public ProppFunction FindFunction(int moveNumber, int functionNumber)
     {
-        ProppMove move = null;
-        if(_moveDictionary.TryGetValue(moveNumber, out move))
+        foreach (var f in functions)
         {
-            foreach(var f in move.proppFunctions)
+            if (f.Number == functionNumber)
             {
-                if(f.MoveNumber == functionNumber)
-                {
-                    return f.containFunction;
-                }
+                return f;
             }
         }
         return null;

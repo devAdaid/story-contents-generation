@@ -12,13 +12,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981aeac5370a51c40953dfb266aa4a5b, type: 3}
   m_Name: Story1
   m_EditorClassIdentifier: 
-  moves:
-  - number: 1
-    proppFunctions:
-    - functionNumber: 1
-    - functionNumber: 2
-    - functionNumber: 3
-    - functionNumber: 4
-    - functionNumber: 12
-  _functionKey: 0
+  interdiction:
+    actionName: move
+    arguments:
+    - hero
+    - OutHome
+  villainy:
+    villainyActionData:
+      actionName: kidnap
+      arguments:
+      - villain
+      - princess
+    liquidationActionData:
+      actionName: rescue
+      arguments:
+      - hero
+      - princess
+  functions:
+  - functionNumber: 2
+    actions:
+    - actionName: talk
+      arguments:
+      - family
+      - hero
+      - interdiction
+  - functionNumber: 1
+    actions:
+    - actionName: move
+      arguments:
+      - family
+      - OutHome
+  - functionNumber: 3
+    actions:
+    - actionName: violate
+      arguments:
+      - family
+  - functionNumber: 8
+    actions:
+    - actionName: appear
+      arguments:
+      - villain
+    - actionName: villainy
+      arguments: []
+    - actionName: disappear
+      arguments:
+      - villain
+  - functionNumber: 9
+    actions:
+    - actionName: know
+      arguments:
+      - hero
+      - villainy
+  - functionNumber: 10
+    actions:
+    - actionName: determine
+      arguments:
+      - hero
+  - functionNumber: 11
+    actions:
+    - actionName: move
+      arguments:
+      - hero
+      - Forest
+  - functionNumber: 12
+    actions:
+    - actionName: meet
+      arguments:
+      - hero
+      - donor
+    - actionName: ask
+      arguments:
+      - donor
+      - hero
+  - functionNumber: 13
+    actions:
+    - actionName: help
+      arguments:
+      - hero
+      - donor
+  - functionNumber: 14
+    actions:
+    - actionName: offer
+      arguments:
+      - donor
+      - hero
+  - functionNumber: 15
+    actions:
+    - actionName: guide
+      arguments:
+      - donor
+      - hero
+  - functionNumber: 19
+    actions:
+    - actionName: liquidate
+      arguments: []
+  characters:
+    heroName: "\uC18C\uB140"
+    villainName: "\uAC70\uC704"
+    donorName: "\uACE0\uC2B4\uB3C4\uCE58"
+    familyName: "\uBD80\uBAA8\uB2D8"
+    princessName: "\uB3D9\uC0DD"
+  _functionKey: 589582
   evaluateDistance: 0

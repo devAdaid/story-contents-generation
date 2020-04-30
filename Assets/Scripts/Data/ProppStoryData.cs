@@ -7,14 +7,17 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ProppStoryData : ScriptableObject, IEquatable<ProppStoryData>, IComparable<ProppStoryData>
 {
-    public List<ProppMoveData> moves = new List<ProppMoveData>();
-    public List<ProppCharacter> characters = new List<ProppCharacter>();
+    public ProppActionData interdiction;
+    public ProppVillainyData villainy;
+    public List<ProppFunctionData> functions = new List<ProppFunctionData>();
+    public ProppCharacterData characters;
+    //public List<ProppCharacter> characters = new List<ProppCharacter>();
 
     public int FunctionKey
     {
         get
         {
-            _functionKey = CalculateFunctionKey();
+            _functionKey = CalculatePlotKey();
             return _functionKey;
         }
     }
@@ -25,24 +28,22 @@ public class ProppStoryData : ScriptableObject, IEquatable<ProppStoryData>, ICom
 
     public ProppStoryData(ProppStory story)
     {
-        foreach(var m in story.moves)
+        interdiction = new ProppActionData(story.interdiction);
+        villainy = new ProppVillainyData(story.villainy);
+        foreach(var f in story.functions)
         {
-            var move = new ProppMoveData(m);
-            moves.Add(move);
+            functions.Add(new ProppFunctionData(f));
         }
+        characters = story.characters;
     }
 
-    public int CalculateFunctionKey()
+    public int CalculatePlotKey()
     {
         int result = 0;
-        foreach(var m in moves)
+        foreach (var f in functions)
         {
-            foreach(var f in m.proppFunctions)
-            {
-                result |= (1 << f.functionNumber);
-            }
+            result |= (1 << f.functionNumber);
         }
-        //Debug.Log($"FunctionKey: {result}");
         return result;
     }
 

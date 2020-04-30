@@ -16,9 +16,24 @@ MonoBehaviour:
   - number: 1
     proppFunctions:
     - functionNumber: 5
+      descriptionKey: []
+      descriptionValue: []
     - functionNumber: 7
+      descriptionKey: []
+      descriptionValue: []
     - functionNumber: 8
+      descriptionKey: []
+      descriptionValue: []
     - functionNumber: 9
+      descriptionKey: []
+      descriptionValue: []
     - functionNumber: 10
+      descriptionKey: []
+      descriptionValue: []
+  characters:
+  - name: 
+    characterType: 0
+  - name: 
+    characterType: 0
   _functionKey: 1952
   evaluateDistance: 2

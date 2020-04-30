@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action_Determine : ProppAction
+public class Action_Liquidate : ProppAction
 {
-    public const string key = "determine";
+    public const string key = "liquidate";
     public override string ActionName => key;
     public ProppAction liquidationAction = null;
 
     public override string Description()
     {
-        return $"{liquidationAction.DescriptionAsNoun()}을 결심하였습니다.";
+        return liquidationAction.Description();
     }
     public override string DescriptionAsNoun()
     {
-        return $"{liquidationAction.DescriptionAsNoun()}을 결심하는 것";
+        return liquidationAction.DescriptionAsNoun();
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

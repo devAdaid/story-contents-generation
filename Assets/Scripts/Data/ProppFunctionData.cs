@@ -7,12 +7,13 @@ using System.Linq;
 public class ProppFunctionData
 {
     public int functionNumber = 0;
-    public List<string> descriptionKey = new List<string>();
-    public List<string> descriptionValue = new List<string>();
+    public List<ProppActionData> actions = new List<ProppActionData>();
     public ProppFunctionData(ProppFunction function)
     {
         functionNumber = function.Number;
-        descriptionKey = function.description.Keys.ToList();
-        descriptionValue = function.description.Values.ToList();
+        foreach(var a in function.actions)
+        {
+            actions.Add(new ProppActionData(a));
+        }
     }
 }

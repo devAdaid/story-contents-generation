@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Action_Move : ProppAction
 {
-    public const string _key = "move";
-    public ProppCharacter performChar;
-    public ProppLocation loocation;
+    public const string key = "move";
+    public override string ActionName => key;
+    public string performChar;
+    public string targetLocation;
 
-    public override string Description(bool isPositive = true)
+    public override string Description()
     {
-        return string.Empty;
+        return $"{performChar}이 {targetLocation}으로 갔습니다.";
     }
-    public override string DescriptionAsNoun(bool isPositive = true)
+    public override string DescriptionAsNoun()
     {
-        return string.Empty;
+        return $"{performChar}이 {targetLocation}으로 가는 것";
     }
 
-    public override void SetWithArgs(List<string> arguments)
+    public override void SetWithArgs(ProppStory story, List<string> arguments)
     {
-        base.SetWithArgs(arguments);
+        base.SetWithArgs(story, arguments);
+        performChar = story.FindCharacterName(arguments[0]);
+        targetLocation = arguments[1];
     }
 }

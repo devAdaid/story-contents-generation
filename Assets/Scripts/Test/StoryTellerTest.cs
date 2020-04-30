@@ -9,21 +9,26 @@ public class StoryTellerTest : MonoBehaviour
 
     public void RandomStory()
     {
-        if (storyTeller == null || storyTeller.story.moves.Count < 1)
+        if (storyTeller == null || storyTeller.story.functions.Count < 1)
         {
             storyTeller = new ProppStoryTeller();
             storyTeller.MakeRandomStory();
         }
+        storyTeller.TellStory();
         storyTeller.ProgressStory();
     }
 
     public void CBRStory()
     {
-        if (storyTeller == null || storyTeller.story.moves.Count < 1)
+        if (storyTeller == null || storyTeller.story.functions.Count < 1)
         {
             storyTeller = new ProppStoryTeller();
             storyTeller.MakeCBRStory(cbrCondition);
         }
-        storyTeller.ProgressStory();
+        while (!storyTeller.IsStoryEnd)
+        {
+            storyTeller.TellStory();
+            storyTeller.ProgressStory();
+        }
     }
 }

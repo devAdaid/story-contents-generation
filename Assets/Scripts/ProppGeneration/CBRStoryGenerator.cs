@@ -40,7 +40,7 @@ public class CBRStoryGenerator : StoryGenerator
     public List<ProppStoryData> LoadStoryData()
     {
         var data = Resources.LoadAll<ProppStoryData>("Story");
-        Debug.Log(data.Length);
+        //Debug.Log(data.Length);
         return data.ToList();
     }
 
@@ -86,12 +86,7 @@ public class CBRStoryGenerator : StoryGenerator
 
     private void ReviseStory(ProppStory story)
     {
-        ProppCharacter hero = new ProppCharacter("Hero", ECharacterType.Hero);
-        ProppCharacter villain = new ProppCharacter("Villain", ECharacterType.Villain);
-        ProppCharacter helper = new ProppCharacter("Helper", ECharacterType.Helper);
-        story.AddCharacter(hero);
-        story.AddCharacter(villain);
-        story.AddCharacter(helper);
+
     }
 
     private void RetainStory(ProppStory story)

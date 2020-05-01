@@ -11,9 +11,17 @@ public class StoryDatabaseManager : MonoBehaviour
     {
         if(storyDatabase == null)
         {
-            string contents = File.ReadAllText(Application.persistentDataPath + "/storydb.json");
-            Debug.Log($"Load Data: {contents}");
-            storyDatabase = JsonUtility.FromJson<StoryDatabase>(contents);
+            string path = Application.persistentDataPath + "/storydb.json";
+            if (File.Exists(path))
+            {
+                string contents = File.ReadAllText(path);
+                storyDatabase = JsonUtility.FromJson<StoryDatabase>(contents);
+            }
+            else
+            {
+                Initialize();
+            }
+            //Debug.Log($"Load Data: {contents}");
         }
     }
 
@@ -22,17 +30,17 @@ public class StoryDatabaseManager : MonoBehaviour
         storyDatabase = new StoryDatabase();
 
         storyDatabase.storyData.Clear();
-        var data = Resources.LoadAll<ProppStoryData>("Story");
-        foreach (var d in data)
+        var storyData = Resources.LoadAll<TextAsset>("Story");
+        foreach (var d in storyData)
         {
-            storyDatabase.storyData.Add(ScriptableObject.Instantiate(d));
+            storyDatabase.storyData.Add(JsonUtility.FromJson<ProppStoryData>(d.text));
         }
 
         storyDatabase.backgroundData.Clear();
-        var data2 = Resources.LoadAll<ProppBackgroundData>("Background");
-        foreach (var d in data2)
+        var bgData = Resources.LoadAll<TextAsset>("Background");
+        foreach (var d in bgData)
         {
-            storyDatabase.backgroundData.Add(ScriptableObject.Instantiate(d));
+            storyDatabase.backgroundData.Add(JsonUtility.FromJson<ProppBackgroundData>(d.text));
         }
 
         LoadFunctionData("Pair/Interdiction", storyDatabase.interdictionPairs);
@@ -71,13 +79,20 @@ public class StoryDatabaseManager : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/storydb.json", contents);
     }
 
+    public static void SaveAt(string path)
+    {
+        string contents = JsonUtility.ToJson(storyDatabase);
+        Debug.Log(contents);
+        File.WriteAllText(path + "/storydb.json", contents);
+    }
+
     protected static void LoadFunctionData(string path, List<ProppPairFunctionData> target)
     {
         target.Clear();
-        var data = Resources.LoadAll<ProppPairFunctionData>(path);
+        var data = Resources.LoadAll<TextAsset>(path);
         foreach (var d in data)
         {
-            target.Add(ScriptableObject.Instantiate(d));
+            target.Add(JsonUtility.FromJson<ProppPairFunctionData>(d.text));
         }
     }
 }

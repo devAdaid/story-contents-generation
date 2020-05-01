@@ -68,12 +68,14 @@ public abstract class StoryGenerator
 
     protected void LoadFunctionData(string path, List<ProppPairFunctionData> target)
     {
+        /*
         target.Clear();
         var data = Resources.LoadAll<ProppPairFunctionData>(path);
         foreach (var d in data)
         {
             target.Add(ScriptableObject.Instantiate(d));
         }
+        */
     }
 
     protected void ReplaceActionData(ref ProppActionData targetAction, ProppActionData newAction)

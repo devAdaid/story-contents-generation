@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
 [System.Serializable]
-public class ProppPairFunctionData : ScriptableObject
+public class ProppPairFunctionData
 {
     public List<ProppFunctionData> functionData;
 

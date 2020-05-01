@@ -40,8 +40,8 @@ public class ProppStory
         ProppActionFactory.Instance.SetStory(this);
         characters = data.characters;
         locations = data.locations;
-        characters.SetCharDict();
-        locations.SetLocationDict();
+        characters.SetDict();
+        locations.SetDict();
         interdiction = ProppActionFactory.Instance.CreateAction(data.interdiction);
         villainy = new ProppVillainy(data.villainy);
         foreach(var f in data.functions)

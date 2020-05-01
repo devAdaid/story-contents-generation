@@ -11,11 +11,11 @@ public class Action_Achieve : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이(가) {targetChar}을 얻었습니다.";
+        return $"{performChar}이(가) {targetChar}을(를) 얻었습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이(가) {targetChar}을 얻은 것";
+        return $"{performChar}이(가) {targetChar}을(를) 얻은 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

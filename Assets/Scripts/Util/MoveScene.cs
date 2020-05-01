@@ -12,14 +12,6 @@ public class MoveScene : MonoBehaviour
 
     public void LoadData()
     {
-        if(!PlayerPrefs.HasKey("IsFirst"))
-        {
-            StoryDatabaseManager.Initialize();
-            PlayerPrefs.SetInt("IsFirst", 0);
-        }
-        else
-        {
-            StoryDatabaseManager.LoadData();
-        }
+        StoryDatabaseManager.LoadData();
     }
 }

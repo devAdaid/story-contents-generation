@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
 [System.Serializable]
-public class ProppStoryData : ScriptableObject, IEquatable<ProppStoryData>, IComparable<ProppStoryData>
+public class ProppStoryData : IEquatable<ProppStoryData>, IComparable<ProppStoryData>
 {
     public ProppActionData interdiction;
     public ProppVillainyData villainy = new ProppVillainyData();
@@ -28,7 +27,7 @@ public class ProppStoryData : ScriptableObject, IEquatable<ProppStoryData>, ICom
 
     public ProppStoryData() { }
 
-    public ProppStoryData(ProppStoryDataContainer data)
+    public ProppStoryData(ProppStoryData data)
     {
         interdiction = data.interdiction;
         villainy = data.villainy;

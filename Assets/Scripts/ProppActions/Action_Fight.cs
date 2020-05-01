@@ -11,11 +11,11 @@ public class Action_Fight : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이(가) {targetChar}와 결투하였습니다.";
+        return $"{performChar}이(가) {targetChar}와(과) 결투하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이(가) {targetChar}와 결투한 것";
+        return $"{performChar}이(가) {targetChar}와(과) 결투한 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

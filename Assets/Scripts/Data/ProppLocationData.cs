@@ -11,12 +11,22 @@ public class ProppLocationData
     public string donorHome;
     private Dictionary<string, string> _locationDict = new Dictionary<string, string>();
 
-    public void SetLocationDict()
+    public void SetDict()
     {
-        _locationDict.Add("Home", home);
-        _locationDict.Add("VillainHouse", villainHouse);
-        _locationDict.Add("DonorHome", donorHome);
-        _locationDict.Add("OutHome", outHome);
+        if (_locationDict == null || _locationDict.Count == 0)
+        {
+            _locationDict.Add("Home", home);
+            _locationDict.Add("OutHome", outHome);
+            _locationDict.Add("VillainHouse", villainHouse);
+            _locationDict.Add("DonorHome", donorHome);
+        }
+        else
+        {
+            _locationDict["Home"] = home;
+            _locationDict["OutHome"] = outHome;
+            _locationDict["DonorHome"] = donorHome;
+            _locationDict["VillainHouse"] = villainHouse;
+        }
     }
 
     public string FindLocationName(string key)

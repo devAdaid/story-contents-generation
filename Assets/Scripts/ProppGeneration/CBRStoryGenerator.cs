@@ -62,7 +62,7 @@ public class CBRStoryGenerator : StoryGenerator
 
     private ProppStory ReuseReviseStory(ProppStoryData storyData)
     {
-        ProppStoryData cloneData = ScriptableObject.Instantiate(storyData);
+        ProppStoryData cloneData = new ProppStoryData(storyData);
         
         // Background
         RenameBackground(cloneData);

@@ -26,4 +26,9 @@ public class Action_Steal : ProppAction
         targetChar = story.FindCharacterName(arguments[1]);
         obj = story.FindCharacterName(arguments[2]);
     }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar, targetChar);
+    }
 }

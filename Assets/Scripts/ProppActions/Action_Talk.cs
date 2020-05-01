@@ -31,4 +31,9 @@ public class Action_Talk : ProppAction
             contents += "을 금지한다고"
 ;       }
     }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar, targetChar);
+    }
 }

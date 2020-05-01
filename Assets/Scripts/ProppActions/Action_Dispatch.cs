@@ -12,11 +12,11 @@ public class Action_Dispatch : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}이(가) {targetChar}에게 {liquidationAction.DescriptionAsNoun()}을 명하며 파견하였습니다.";
+        return $"{performChar}이(가) {liquidationAction.DescriptionAsNoun()}을 명하며 파견하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이(가) {targetChar}에게 {liquidationAction.DescriptionAsNoun()}을 명하며 파견한 것";
+        return $"{performChar}이(가) {liquidationAction.DescriptionAsNoun()}을 명하며 파견한 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)
@@ -25,5 +25,10 @@ public class Action_Dispatch : ProppAction
         performChar = story.FindCharacterName(arguments[0]);
         targetChar = story.FindCharacterName(arguments[1]);
         liquidationAction = story.villainy.liquidationAction;
+    }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar, targetChar);
     }
 }

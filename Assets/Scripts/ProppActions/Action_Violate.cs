@@ -24,4 +24,14 @@ public class Action_Violate : ProppAction
         violateChar = story.FindCharacterName(arguments[0]);
         violateAction = story.interdiction;
     }
+
+    public override void TellAction(StoryTellingSystem stSystem)
+    {
+        violateAction.TellAction(stSystem);
+    }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+       violateAction.ShowAction(stSystem);
+    }
 }

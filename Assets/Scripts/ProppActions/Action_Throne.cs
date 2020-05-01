@@ -22,4 +22,9 @@ public class Action_Throne : ProppAction
         base.SetWithArgs(story, arguments);
         performChar = story.FindCharacterName(arguments[0]);
     }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar);
+    }
 }

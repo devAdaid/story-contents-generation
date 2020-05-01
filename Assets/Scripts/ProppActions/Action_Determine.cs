@@ -22,4 +22,9 @@ public class Action_Determine : ProppAction
         base.SetWithArgs(story, arguments);
         liquidationAction = story.villainy.liquidationAction;
     }
+    
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.UnStageChar();
+    }
 }

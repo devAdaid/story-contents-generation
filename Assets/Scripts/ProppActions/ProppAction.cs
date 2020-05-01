@@ -18,6 +18,14 @@ public class ProppAction
     {
         return string.Empty;
     }
+    public virtual void TellAction(StoryTellingSystem stSystem)
+    {
+        stSystem.SetText(Description());
+    }
+    public virtual void ShowAction(StoryTellingSystem stSystem)
+    {
+
+    }
 
     public override string ToString()
     {

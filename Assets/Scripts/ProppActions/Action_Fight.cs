@@ -24,4 +24,9 @@ public class Action_Fight : ProppAction
         performChar = story.FindCharacterName(arguments[0]);
         targetChar = story.FindCharacterName(arguments[1]);
     }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar, targetChar);
+    }
 }

@@ -28,4 +28,9 @@ public class Action_Know : ProppAction
             contents = story.villainy.villainyAction.DescriptionAsNoun();
         }
     }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar);
+    }
 }

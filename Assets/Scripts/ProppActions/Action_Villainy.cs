@@ -6,20 +6,30 @@ public class Action_Villainy : ProppAction
 {
     public const string key = "villainy";
     public override string ActionName => key;
-    public ProppAction liquidationAction = null;
+    public ProppAction villainyAction = null;
 
     public override string Description()
     {
-        return liquidationAction.Description();
+        return villainyAction.Description();
     }
     public override string DescriptionAsNoun()
     {
-        return liquidationAction.DescriptionAsNoun();
+        return villainyAction.DescriptionAsNoun();
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)
     {
         base.SetWithArgs(story, arguments);
-        liquidationAction = story.villainy.villainyAction;
+        villainyAction = story.villainy.villainyAction;
+    }
+
+    public override void TellAction(StoryTellingSystem stSystem)
+    {
+        villainyAction.TellAction(stSystem);
+    }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        villainyAction.ShowAction(stSystem);
     }
 }

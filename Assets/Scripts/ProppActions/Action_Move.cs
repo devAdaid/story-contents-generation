@@ -24,4 +24,10 @@ public class Action_Move : ProppAction
         performChar = story.FindCharacterName(arguments[0]);
         targetLocation = story.FindLocationName(arguments[1]);
     }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        stSystem.OnStageCharacter(performChar);
+        stSystem.SetBackground(targetLocation);
+    }
 }

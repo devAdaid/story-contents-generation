@@ -22,4 +22,14 @@ public class Action_Liquidate : ProppAction
         base.SetWithArgs(story, arguments);
         liquidationAction = story.villainy.liquidationAction;
     }
+
+    public override void TellAction(StoryTellingSystem stSystem)
+    {
+        stSystem.SetText(liquidationAction.Description());
+    }
+
+    public override void ShowAction(StoryTellingSystem stSystem)
+    {
+        liquidationAction.ShowAction(stSystem);
+    }
 }

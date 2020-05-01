@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProppStoryTeller
 {
@@ -9,13 +10,23 @@ public class ProppStoryTeller
     public RandomStoryGenerator randomStoryGenerator = new RandomStoryGenerator();
     public CBRStoryGenerator cbrStoryGenerator = new CBRStoryGenerator();
     public int currentStoryIndex = 0;
+    public int currentActionIndex = 0;
     public bool IsStoryEnd = false;
 
     public ProppStoryTeller() { }
 
+    public void MakeCBRStory()
+    {
+        currentStoryIndex = 0;
+        currentActionIndex = 0;
+        story = cbrStoryGenerator.GenerateStory(out storyData);
+        //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
+    }
+
     public void MakeCBRStory(List<int> condition)
     {
         currentStoryIndex = 0;
+        currentActionIndex = 0;
         cbrStoryGenerator.SetCondition(condition);
         story = cbrStoryGenerator.GenerateStory(out storyData);
         //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
@@ -24,6 +35,7 @@ public class ProppStoryTeller
     public void MakeRandomStory()
     {
         currentStoryIndex = 0;
+        currentActionIndex = 0;
         story = randomStoryGenerator.GenerateStory(out storyData);
         //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
     }
@@ -38,7 +50,14 @@ public class ProppStoryTeller
         if (story == null) return;
         if (IsStoryEnd) return;
 
-        currentStoryIndex += 1;
+        currentActionIndex += 1;
+        ProppFunction currentFuntion = story.functions[currentStoryIndex];
+        if (currentActionIndex >= currentFuntion.actions.Count)
+        {
+            currentActionIndex = 0;
+            currentStoryIndex += 1;
+        }
+
         if(currentStoryIndex >= story.functions.Count)
         {
             IsStoryEnd = true;
@@ -62,6 +81,33 @@ public class ProppStoryTeller
             if(a != null)
                 Debug.Log($"{a.Description()}");
             //Debug.Log(a.ToString());
+        }
+    }
+
+    public void TellStory(StoryTellingSystem stSystem)
+    {
+        if (story == null) return;
+        if (IsStoryEnd)
+        {
+            SceneManager.LoadScene("1_Title");
+        }
+
+        if (currentStoryIndex >= story.functions.Count)
+        {
+            return;
+        }
+        ProppFunction currentFuntion = story.functions[currentStoryIndex];
+
+        if (currentActionIndex >= currentFuntion.actions.Count)
+        {
+            return;
+        }
+        ProppAction currentAction = currentFuntion.actions[currentActionIndex];
+
+        if(currentAction != null)
+        {
+            currentAction.ShowAction(stSystem);
+            currentAction.TellAction(stSystem);
         }
     }
 }

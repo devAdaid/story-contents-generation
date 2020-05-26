@@ -64,7 +64,10 @@ public class SoundManager : PersistentSingleton<SoundManager>
 
     public void PlayBgm(string clipName)
     {
-        bgmSource.clip = _soundClips[clipName];
+        if(bgmSource.clip != _soundClips[clipName])
+        {
+            bgmSource.clip = _soundClips[clipName];
+        }
         bgmSource.Play();
     }
 

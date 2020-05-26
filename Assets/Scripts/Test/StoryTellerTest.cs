@@ -8,7 +8,7 @@ public class StoryTellerTest : MonoBehaviour
     public StoryShowUI storyUI;
     public StorySaveUI saveUI;
     public ProppStoryTeller storyTeller = null;
-    public List<int> condition = new List<int>();
+    public List<int> condition;
 
     public void RandomStory()
     {
@@ -26,5 +26,22 @@ public class StoryTellerTest : MonoBehaviour
         StoryGameSystem.playStory = storyTeller.story;
         storyUI.SetTextWith(storyTeller.story);
         saveUI.SetStory(storyTeller.story);
+    }
+
+    public void AddCondition(int n)
+    {
+        if(!condition.Contains(n))
+        {
+            condition.Add(n);
+            condition.Sort();
+        }
+    }
+
+    public void RemoveCondition(int n)
+    {
+        if (condition.Contains(n))
+        {
+            condition.Remove(n);
+        }
     }
 }

@@ -28,5 +28,7 @@ public class Action_Victory : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar, targetChar);
+        stSystem.AnimateCharacter1("Shake");
+        stSystem.AnimateCharacter2("Dead");
     }
 }

@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class StoryGameSystem : MonoBehaviour
 {
+    public static ProppStory playStory = null;
     public ProppStoryTeller storyTeller = null;
     public StoryTellingSystem storyTellingSystem;
 
     private void Start()
     {
-        RandomStory();
-        Debug.Log(storyTeller.story.FindLocationName("Home"));
+        storyTeller = new ProppStoryTeller();
+        if (playStory == null)
+        {
+            RandomStory();
+        }
+        else
+        {
+            storyTeller.SetStory(playStory);
+        }
+
+        //Debug.Log(storyTeller.story.FindLocationName("Home"));
         storyTellingSystem.SetBackground(storyTeller.story.FindLocationName("Home"));
         TellStory();
         ProgressStory();
@@ -18,13 +28,11 @@ public class StoryGameSystem : MonoBehaviour
 
     public void RandomStory()
     {
-        storyTeller = new ProppStoryTeller();
         storyTeller.MakeRandomStory();
     }
 
     public void CBRStory()
     {
-        storyTeller = new ProppStoryTeller();
         storyTeller.MakeCBRStory();
     }
 

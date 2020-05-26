@@ -40,9 +40,11 @@ public class ProppStoryTeller
         //Debug.Log(JsonUtility.ToJson(new ProppStoryData(story)));
     }
 
-    public void RetainStory()
+    public void SetStory(ProppStory madeStory)
     {
-        StoryDatabaseManager.AddStory(storyData);
+        currentStoryIndex = 0;
+        currentActionIndex = 0;
+        story = madeStory;
     }
 
     public void ProgressStory()
@@ -89,7 +91,7 @@ public class ProppStoryTeller
         if (story == null) return;
         if (IsStoryEnd)
         {
-            SceneManager.LoadScene("1_Title");
+            SceneManager.LoadScene("2_Main");
         }
 
         if (currentStoryIndex >= story.functions.Count)
@@ -106,6 +108,7 @@ public class ProppStoryTeller
 
         if(currentAction != null)
         {
+            stSystem.DefaultSetting();
             currentAction.ShowAction(stSystem);
             currentAction.TellAction(stSystem);
         }

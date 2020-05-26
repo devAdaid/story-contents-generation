@@ -6,6 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public class ProppStoryData : IEquatable<ProppStoryData>, IComparable<ProppStoryData>
 {
+    public int id = 0;
+    public string name = string.Empty;
     public ProppActionData interdiction;
     public ProppVillainyData villainy = new ProppVillainyData();
     public List<ProppFunctionData> functions = new List<ProppFunctionData>();
@@ -34,6 +36,19 @@ public class ProppStoryData : IEquatable<ProppStoryData>, IComparable<ProppStory
         functions = data.functions;
         characters = data.characters;
         locations = data.locations;
+    }
+
+    public ProppStoryData(ProppStory story, int newId, string newName)
+    {
+        interdiction = new ProppActionData(story.interdiction);
+        villainy = new ProppVillainyData(story.villainy);
+        foreach (var f in story.functions)
+        {
+            functions.Add(new ProppFunctionData(f));
+        }
+        characters = story.characters;
+        id = newId;
+        name = newName;
     }
 
     public ProppStoryData(ProppStory story)

@@ -28,5 +28,7 @@ public class Action_Awake : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar, targetChar);
+        stSystem.AnimateCharacter1("Tell");
+        stSystem.AnimateCharacter2("Wake");
     }
 }

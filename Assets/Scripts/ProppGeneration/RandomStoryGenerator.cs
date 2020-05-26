@@ -41,7 +41,7 @@ public class RandomStoryGenerator : StoryGenerator
         if (rand == 1)
         {
             story.functions.Add(new ProppFunctionData(2, "talk", "family", "princess", "interdiction"));
-            story.functions.Add(new ProppFunctionData(3, "violate", "princess"));
+            story.functions.Add(new ProppFunctionData(3, "violate", "family"));
         }
     }
 
@@ -124,7 +124,7 @@ public class RandomStoryGenerator : StoryGenerator
     
     private void Ending(ProppStoryData story)
     {
-        int rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 3);
         switch(rand)
         {
             case 0:

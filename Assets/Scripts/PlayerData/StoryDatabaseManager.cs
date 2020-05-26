@@ -19,13 +19,17 @@ public class StoryDatabaseManager : MonoBehaviour
             }
             else
             {
-                Initialize();
+                InitializeWithDefaultData();
             }
             //Debug.Log($"Load Data: {contents}");
         }
+        else
+        {
+            Debug.Log("Already data loaded");
+        }
     }
 
-    public static void Initialize()
+    public static void InitializeWithDefaultData()
     {
         storyDatabase = new StoryDatabase();
 

@@ -10,7 +10,7 @@ public class DefaultDatabase
     public static void ExportData()
     {
         string dataDirectoryPath = string.Format("Assets/Resources");
-        StoryDatabaseManager.Initialize();
+        StoryDatabaseManager.InitializeWithDefaultData();
         StoryDatabaseManager.SaveAt(dataDirectoryPath);
     }
 }

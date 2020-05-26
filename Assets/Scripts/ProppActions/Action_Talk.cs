@@ -35,5 +35,6 @@ public class Action_Talk : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar, targetChar);
+        stSystem.AnimateCharacter1("Tell");
     }
 }

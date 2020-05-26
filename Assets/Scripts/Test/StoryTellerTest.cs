@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class StoryTellerTest : MonoBehaviour
 {
-    public Text storyText;
+    public StoryShowUI storyUI;
+    public StorySaveUI saveUI;
     public ProppStoryTeller storyTeller = null;
-    public List<int> cbrCondition = new List<int>();
+    public List<int> condition = new List<int>();
 
     public void RandomStory()
     {
         storyTeller = new ProppStoryTeller();
         storyTeller.MakeRandomStory();
-        storyText.text = storyTeller.story.Text;
+        StoryGameSystem.playStory = storyTeller.story;
+        storyUI.SetTextWith(storyTeller.story);
+        saveUI.SetStory(storyTeller.story);
     }
 
     public void CBRStory()
     {
         storyTeller = new ProppStoryTeller();
-        storyTeller.MakeCBRStory(cbrCondition);
-        storyText.text = storyTeller.story.Text;
+        storyTeller.MakeCBRStory(condition);
+        StoryGameSystem.playStory = storyTeller.story;
+        storyUI.SetTextWith(storyTeller.story);
+        saveUI.SetStory(storyTeller.story);
     }
 }

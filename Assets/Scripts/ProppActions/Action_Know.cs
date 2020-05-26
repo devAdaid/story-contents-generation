@@ -32,5 +32,6 @@ public class Action_Know : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar);
+        stSystem.AnimateCharacter0("Know");
     }
 }

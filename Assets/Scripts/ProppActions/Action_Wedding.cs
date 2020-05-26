@@ -26,5 +26,6 @@ public class Action_Wedding : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar);
+        stSystem.AnimateCharacter1("Shake");
     }
 }

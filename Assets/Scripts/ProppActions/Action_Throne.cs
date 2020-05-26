@@ -26,5 +26,6 @@ public class Action_Throne : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar);
+        stSystem.AnimateCharacter0("Shake");
     }
 }

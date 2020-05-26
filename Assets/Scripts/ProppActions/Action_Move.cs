@@ -29,5 +29,6 @@ public class Action_Move : ProppAction
     {
         stSystem.OnStageCharacter(performChar);
         stSystem.SetBackground(targetLocation);
+        stSystem.AnimateCharacter1("Move");
     }
 }

@@ -27,5 +27,6 @@ public class Action_Appear : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar);
+        stSystem.AnimateCharacter1("Move");
     }
 }

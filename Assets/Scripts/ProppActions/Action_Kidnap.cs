@@ -15,7 +15,7 @@ public class Action_Kidnap : ProppAction
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}이(가) {targetChar}을(를) 납치하는 것";
+        return $"{performChar}이(가) {targetChar}을(를) 납치한 것";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)

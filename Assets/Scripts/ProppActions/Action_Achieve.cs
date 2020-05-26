@@ -28,5 +28,7 @@ public class Action_Achieve : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar, targetChar);
+        stSystem.AnimateCharacter1("Shake");
+        stSystem.AnimateCharacter2("Know");
     }
 }

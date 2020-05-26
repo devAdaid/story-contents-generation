@@ -34,7 +34,6 @@ public class CBRStoryGenerator : StoryGenerator
     {
         storyData = RetrieveStoryData();
         ProppStory story = ReuseReviseStory(storyData);
-        RetainStory(story);
         return story;
     }
 
@@ -83,10 +82,5 @@ public class CBRStoryGenerator : StoryGenerator
         ModifyWithPairFunction(cloneData, GetRandomPairFunction(_endPairs));
 
         return new ProppStory(cloneData);
-    }
-
-    private void RetainStory(ProppStory story)
-    {
-
     }
 }

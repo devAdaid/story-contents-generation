@@ -11,11 +11,11 @@ public class Action_Offer : ProppAction
 
     public override string Description()
     {
-        return $"{performChar}은(는) 고마워하며 {targetChar}을(를) 도와주겠다고 하였습니다.";
+        return $"{performChar}은(는) {targetChar}을(를) 도와주겠다고 하였습니다.";
     }
     public override string DescriptionAsNoun()
     {
-        return $"{performChar}은(는) 고마워하며 {targetChar}을(를) 도와주겠다고 하였습니다.";
+        return $"{performChar}은(는) {targetChar}을(를) 도와주겠다고 하였습니다.";
     }
 
     public override void SetWithArgs(ProppStory story, List<string> arguments)
@@ -28,5 +28,6 @@ public class Action_Offer : ProppAction
     public override void ShowAction(StoryTellingSystem stSystem)
     {
         stSystem.OnStageCharacter(performChar, targetChar);
+        stSystem.AnimateCharacter1("Shake");
     }
 }
